@@ -29,49 +29,64 @@
     .info-section {
       background: #f8f9fa;
       border-radius: 8px;
-      padding: 15px;
+      padding: 12px;
       margin-bottom: 15px;
       box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
     .info-item {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      margin-bottom: 10px;
-      padding: 8px;
+      margin-right: 12px;
+      margin-bottom: 0;
+      padding: 6px 8px;
       background: white;
       border-radius: 6px;
       border: 1px solid #e0e0e0;
     }
     .info-item:last-child {
-      margin-bottom: 0;
+      margin-right: 0;
     }
     .label {
       font-weight: 500;
       color: #4285f4;
-      min-width: 120px;
+      min-width: 60px;
+      font-size: 13px;
     }
     .value {
       flex: 1;
     }
     .ga4-status {
-      display: inline-block;
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 12px;
       font-weight: 500;
     }
     .ga4-found {
-      background: #34a853;
-      color: white;
+      background: #e6f4ea;
+      color: #137333;
+    }
+    .ga4-found::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: #137333;
+      border-radius: 50%;
+      margin-right: 6px;
     }
     .ga4-not-found {
-      background: #ea4335;
-      color: white;
+      background: #fce8e6;
+      color: #c5221f;
     }
     .ad-count {
-      font-size: 15px;
+      font-size: 13px;
       font-weight: 500;
       color: #1a73e8;
+      background: #e8f0fe;
+      padding: 3px 8px;
+      border-radius: 4px;
     }
     .ad-list {
       max-height: 400px;
@@ -183,13 +198,13 @@
   </div>
   <div class="info-section">
     <div class="info-item">
-      <span class="label">GA4状态</span>
+      <span class="label">GA4</span>
       <span class="value">
         <span id="ga4Status" class="ga4-status">检测中...</span>
       </span>
     </div>
     <div class="info-item">
-      <span class="label">广告数量</span>
+      <span class="label">广告</span>
       <span class="value">
         <span id="adCount" class="ad-count">0</span>
       </span>

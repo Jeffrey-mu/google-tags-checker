@@ -5,8 +5,7 @@
   "description": "检测页面中的Google广告代码和GA4分析代码",
   "permissions": [
     "activeTab",
-    "scripting",
-    "tabs"
+    "scripting"
   ],
   "host_permissions": [
     "http://*/*",

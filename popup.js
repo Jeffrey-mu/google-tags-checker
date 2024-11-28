@@ -101,12 +101,13 @@ function findGoogleAds(sourceCode) {
 
   // 原有的广告代码检测部分保持不变...
   // 查找所有 script 标签内容
-  const scriptRegex = /<script[^>]*>([^<]+)<\/script>/g;
+  const scriptRegex = /<script[^>]*>([\s\S]+?)<\/script>/g;
   let scriptMatch;
   
   // 查找 GPT 广告定义
   const gptSlots = new Map();
   while ((scriptMatch = scriptRegex.exec(sourceCode)) !== null) {
+    const fullScript = scriptMatch[0];
     const scriptContent = scriptMatch[1];
     
     // 检查是否包含 GPT 广告定义
@@ -122,7 +123,7 @@ function findGoogleAds(sourceCode) {
           const divId = divIdMatch[0].replace(/['"]/g, '');
           gptSlots.set(divId, {
             adPath: adPath,
-            defineScript: scriptContent.trim()
+            defineScript: fullScript
           });
         }
       }
@@ -147,7 +148,7 @@ function findGoogleAds(sourceCode) {
       type: 'Google Publisher Tag 广告位',
       id: slot.adPath,
       divId: divId,
-      code: `// 定义广告位\n${slot.defineScript}\n\n// 广告容器\n${slot.container || '未找到容器'}`
+      code: `${slot.defineScript}\n\n${slot.container || '未找到容器'}`
     });
   }
 
@@ -201,7 +202,6 @@ function displayAdInfo(adInfo) {
     const adElement = document.createElement('div');
     adElement.className = 'ad-item';
     
-    // 创建广告项头部
     const headerHtml = `
       <div class="ad-item-header">
         <span class="ad-number">#${index + 1}</span>
@@ -209,13 +209,11 @@ function displayAdInfo(adInfo) {
       </div>
     `;
 
-    // 创建广告信息部分
     let infoHtml = '';
     if (ad.source) infoHtml += `<div class="ad-info"><span class="info-label">来源:</span> ${ad.source}</div>`;
     if (ad.id) infoHtml += `<div class="ad-info"><span class="info-label">广告位:</span> ${ad.id}</div>`;
     if (ad.divId) infoHtml += `<div class="ad-info"><span class="info-label">容器ID:</span> ${ad.divId}</div>`;
     
-    // 创建代码显示区域
     const codeHtml = `
       <div class="code-container">
         <div class="code-header">
