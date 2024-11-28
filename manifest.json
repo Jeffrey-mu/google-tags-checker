@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Google广告 & GA4检测器",
+  "version": "1.0",
+  "description": "检测页面中的Google广告代码和GA4分析代码",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "tabs"
+  ],
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon16.png",
+      "128": "icon16.png"
+    }
+  }
+} 
